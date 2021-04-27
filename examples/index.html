@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/axios@0.21.1/dist/axios.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <script src="../lib/index.js"></script>
+        <script>
+            const { EasyHttp, Http } = Request;
+
+            EasyHttp.post(
+                'https://proxy.yipiaoyun.cn/kaipiao-app/user/getUserTitle'
+            ).then(res => {
+                console.log('res: ', res);
+            });
+
+            // const Http = new Request(
+            //     {
+            //         baseURL: 'https://proxy.yipiaoyun.cn/'
+            //     },
+            //     {
+            //         request: [
+            //             config => {
+            //                 return {
+            //                     ...config,
+            //                     headers: {
+            //                         ...config.headers,
+            //                         Authorization:
+            //                             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOm51bGwsImV4cCI6MTYyMjAyMDE2OSwidXNlcklkIjoiMTU1IiwiaWF0IjoxNjE5NDI4MTY5fQ.nWywpUu0ERV6jMt8f3VtQS16dF10E_4iOAcYM4vVFpU'
+            //                     }
+            //                 };
+            //             }
+            //         ],
+            //         response: [
+            //             config => {
+            //                 return config.data;
+            //             }
+            //         ]
+            //     }
+            // );
+
+            // Http.getFile('./pyt-logo.png').then(res => {
+            //     const f = new FileReader();
+            //     f.onload = r => {
+            //         const img = new Image();
+            //         img.src = r.target.result;
+            //         document.body.appendChild(img);
+            //     };
+            //     f.readAsDataURL(res);
+            // });
+            // Http.post('kaipiao-app/user/getUserTitle', {
+            //     pageIndex: 1,
+            //     pageSize: 10
+            // }).then(res => {
+            //     console.log('res: ', res);
+            // });
+        </script>
+    </body>
+</html>
