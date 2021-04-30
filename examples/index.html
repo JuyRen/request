@@ -5,12 +5,32 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://unpkg.com/axios@0.21.1/dist/axios.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/tslib/2.2.0/tslib.js"></script>
         <title>Document</title>
     </head>
     <body>
+        <button id="ajax">发送请求</button>
+        <button id="cancel">取消</button>
         <script src="../lib/index.js"></script>
-        <script>
-            const { EasyHttp, Http } = Request;
+        <script type="module">
+            const { EasyHttp, Http: MyHttp } = Request;
+            const CancelToken = MyHttp.CancelToken;
+            const source1 = CancelToken.source();
+            const source2 = CancelToken.source();
+
+            document.getElementById('ajax').addEventListener('click', () => {
+                EasyHttp.get(
+                    'https://proxy.yipiaoyun.cn/kaipiao-app/user/getOperation',
+                    undefined,
+                    {
+                        cancelToken: source1.token
+                    }
+                ).then(res => {});
+            });
+
+            document.getElementById('cancel').addEventListener('click', () => {
+                source1.cancel();
+            });
 
             EasyHttp.post(
                 'https://proxy.yipiaoyun.cn/kaipiao-app/user/getUserTitle'
@@ -18,7 +38,7 @@
                 console.log('res: ', res);
             });
 
-            // const Http = new Request(
+            // const Http = new MyHttp(
             //     {
             //         baseURL: 'https://proxy.yipiaoyun.cn/'
             //     },
@@ -30,7 +50,7 @@
             //                     headers: {
             //                         ...config.headers,
             //                         Authorization:
-            //                             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOm51bGwsImV4cCI6MTYyMjAyMDE2OSwidXNlcklkIjoiMTU1IiwiaWF0IjoxNjE5NDI4MTY5fQ.nWywpUu0ERV6jMt8f3VtQS16dF10E_4iOAcYM4vVFpU'
+            //                             'xxxxx'
             //                     }
             //                 };
             //             }
@@ -42,7 +62,6 @@
             //         ]
             //     }
             // );
-
             // Http.getFile('./pyt-logo.png').then(res => {
             //     const f = new FileReader();
             //     f.onload = r => {

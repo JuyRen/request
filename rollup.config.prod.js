@@ -9,7 +9,8 @@ const config = merge(baseConfig, {
         format: 'es',
         exports: 'auto'
     },
-    plugins: [terser()]
+    plugins: [terser()],
+    external: Object.keys(pkg.dependencies).map(item => new RegExp(item)) // 不打包指定的依赖包， 可以使用String | String[] |  RegExp | (id) => boolean
 });
 
 export default config;

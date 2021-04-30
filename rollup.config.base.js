@@ -5,7 +5,6 @@ import commonjs from '@rollup/plugin-commonjs'; // 将非ES6语法的包转为ES
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import json from '@rollup/plugin-json';
-import pkg from './package.json';
 
 const config = {
     input: './src/main.ts',
@@ -29,8 +28,7 @@ const config = {
         }),
         commonjs(),
         typescript()
-    ],
-    external: Object.keys(pkg.dependencies).map(item => new RegExp(item)) // 不打包指定的依赖包， 可以使用String | String[] |  RegExp | (id) => boolean
+    ]
 };
 
 export default config;

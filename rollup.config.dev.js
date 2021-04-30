@@ -19,7 +19,8 @@ const config = merge(baseConfig, {
             port: 9999
         }),
         livereload()
-    ]
+    ],
+    external: ['axios']
 });
 
 export default config;

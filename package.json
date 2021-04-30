@@ -1,6 +1,6 @@
 {
     "name": "@juyren/request",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "使用axios封装通用的http请求",
     "author": "juyren",
     "keywords": [

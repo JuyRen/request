@@ -7,7 +7,8 @@ const config = merge(baseConfig, {
         file: './lib/index.js',
         format: 'cjs',
         exports: 'default'
-    }
+    },
+    external: Object.keys(pkg.dependencies).map(item => new RegExp(item)) // 不打包指定的依赖包， 可以使用String | String[] |  RegExp | (id) => boolean
 });
 
 export default config;
