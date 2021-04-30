@@ -1,4 +1,4 @@
-import Request from './http';
+import Request from './request';
 
 const EasyHttp = new Request(
     {},

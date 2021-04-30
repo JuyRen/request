@@ -1,7 +1,19 @@
-### Typescript 模板代码
+### 基于 Axios 封装 Request
 
-1.  `npm run server` 浏览器调试
+1. `npm install @juyren/request -D`
 
-2.  `npm run dev:test` 打包 cjs，node 调试
+2. `import { Request, EasyHttp } from '@juyren/request'`
 
-3.  `npm run build`
+3.
+
+```
+    const Http = new Request()
+    Http.get()
+    Http.post()
+
+    // 或者
+
+    EasyHttp.post()
+    EasyHttp.get()
+    ...
+```

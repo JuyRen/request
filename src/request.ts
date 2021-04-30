@@ -2,7 +2,8 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import addURLParams from './helpers/addURLParams';
 import convertToFormData from './helpers/convertToFormData';
 import { Data, AxiosResult, Interceptors } from './types/main.type';
-class Http {
+
+class Request {
     axios: AxiosInstance;
     static CancelToken = axios.CancelToken;
 
@@ -64,4 +65,4 @@ class Http {
     }
 }
 
-export default Http;
+export default Request;
