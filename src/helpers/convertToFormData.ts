@@ -1,4 +1,4 @@
-import { Data } from '../types/main.type';
+import { Data } from '../types/request.type';
 
 function isFile(value: unknown): value is File {
     return value instanceof File;

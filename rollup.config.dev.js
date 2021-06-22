@@ -16,7 +16,7 @@ const config = merge(baseConfig, {
         serve({
             open: true,
             openPage: '/examples/index.html',
-            port: 9999
+            port: 9998
         }),
         livereload()
     ],

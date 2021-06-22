@@ -7,18 +7,30 @@ export interface Interceptors {
 
 export interface Data {
     GET: {
-        [key: string]: string | number | boolean | undefined;
+        [key: string]: string | number | boolean | undefined | null;
     };
 
     POST: {
         [key: string]: unknown;
     };
 
-    POST_FILE: {
+    PUT: {
         [key: string]: unknown;
     };
 
     DELETE: {
+        [key: string]: unknown;
+    };
+
+    POST_FORM: {
+        [key: string]: unknown;
+    };
+
+    PUT_FORM: {
+        [key: string]: unknown;
+    };
+
+    DELETE_FORM: {
         [key: string]: unknown;
     };
 }

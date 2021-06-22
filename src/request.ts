@@ -1,10 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import addURLParams from './helpers/addURLParams';
 import convertToFormData from './helpers/convertToFormData';
-import { Data, AxiosResult, Interceptors } from './types/main.type';
+import { Data, Interceptors } from './types/request.type';
 
-class Request {
-    axios: AxiosInstance;
+export default class Request {
     static CancelToken = axios.CancelToken;
 
     constructor(config?: AxiosRequestConfig, interceptors?: Interceptors) {
@@ -23,13 +22,16 @@ class Request {
         }
     }
 
+    axios: AxiosInstance;
+
+    // 返回Promise<T> 而不是Promise<AxiosResponse<T>>
+    // 会在业务级别的拦截器中，处理Promise<AxiosResponse<T>>， 最后返回Promise<T>
     get<T>(
         url: string,
         data?: Data['GET'],
         config?: AxiosRequestConfig
-    ): AxiosResult<T> {
+    ): Promise<T> {
         url = addURLParams(url, data);
-
         return this.axios.get(url, config);
     }
 
@@ -37,7 +39,7 @@ class Request {
         url: string,
         data?: Data['POST'],
         config?: AxiosRequestConfig
-    ): AxiosResult<T> {
+    ): Promise<T> {
         return this.axios.post(url, data, {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8'
@@ -46,10 +48,58 @@ class Request {
         });
     }
 
-    postFile<T>(url: string, data: Data['POST_FILE']): AxiosResult<T> {
+    put<T>(
+        url: string,
+        data?: Data['PUT'],
+        config?: AxiosRequestConfig
+    ): Promise<T> {
+        return this.axios.put(url, data, {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            ...config
+        });
+    }
+
+    delete<T>(
+        url: string,
+        data?: Data['DELETE'],
+        config?: AxiosRequestConfig
+    ): Promise<T> {
+        return this.axios.delete(url, {
+            data,
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            ...config
+        });
+    }
+
+    postForm<T>(url: string, data: Data['POST_FORM']): Promise<T> {
         const formData = convertToFormData(data);
 
         return this.axios.post(url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    }
+
+    putForm<T>(url: string, data: Data['PUT_FORM']): Promise<T> {
+        const formData = convertToFormData(data);
+
+        return this.axios.put(url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    }
+
+    deleteForm<T>(url: string, data: Data['DELETE_FORM']): Promise<T> {
+        const formData = convertToFormData(data);
+
+        return this.axios.delete(url, {
+            data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -64,5 +114,3 @@ class Request {
             .then(res => res.data);
     }
 }
-
-export default Request;

@@ -1,4 +1,4 @@
-import { Data } from '../types/main.type';
+import { Data } from '../types/request.type';
 
 function addURLParams<T extends Data['GET']>(url: string, data?: T): string {
     if (!data) return url;

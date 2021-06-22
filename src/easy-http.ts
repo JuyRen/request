@@ -3,7 +3,7 @@ import Request from './request';
 const EasyHttp = new Request(
     {},
     {
-        response: [config => config.data]
+        response: [config => config.data.data]
     }
 );
 

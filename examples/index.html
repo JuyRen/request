@@ -18,65 +18,66 @@
             const source1 = CancelToken.source();
             const source2 = CancelToken.source();
 
-            document.getElementById('ajax').addEventListener('click', () => {
-                EasyHttp.get(
-                    'https://proxy.yipiaoyun.cn/kaipiao-app/user/getOperation',
-                    undefined,
-                    {
-                        cancelToken: source1.token
-                    }
-                ).then(res => {});
-            });
-
-            document.getElementById('cancel').addEventListener('click', () => {
-                source1.cancel();
-            });
-
-            EasyHttp.post(
-                'https://proxy.yipiaoyun.cn/kaipiao-app/user/getUserTitle'
-            ).then(res => {
-                console.log('res: ', res);
-            });
-
-            // const Http = new MyHttp(
-            //     {
-            //         baseURL: 'https://proxy.yipiaoyun.cn/'
-            //     },
-            //     {
-            //         request: [
-            //             config => {
-            //                 return {
-            //                     ...config,
-            //                     headers: {
-            //                         ...config.headers,
-            //                         Authorization:
-            //                             'xxxxx'
-            //                     }
-            //                 };
-            //             }
-            //         ],
-            //         response: [
-            //             config => {
-            //                 return config.data;
-            //             }
-            //         ]
-            //     }
-            // );
-            // Http.getFile('./pyt-logo.png').then(res => {
-            //     const f = new FileReader();
-            //     f.onload = r => {
-            //         const img = new Image();
-            //         img.src = r.target.result;
-            //         document.body.appendChild(img);
-            //     };
-            //     f.readAsDataURL(res);
+            // document.getElementById('ajax').addEventListener('click', () => {
+            //     EasyHttp.get(
+            //         'https://proxy.yipiaoyun.cn/kaipiao-app/user/getOperation',
+            //         undefined,
+            //         {
+            //             cancelToken: source1.token
+            //         }
+            //     ).then(res => {});
             // });
-            // Http.post('kaipiao-app/user/getUserTitle', {
-            //     pageIndex: 1,
-            //     pageSize: 10
-            // }).then(res => {
+
+            // document.getElementById('cancel').addEventListener('click', () => {
+            //     source1.cancel();
+            // });
+
+            // EasyHttp.post(
+            //     'https://proxy.yipiaoyun.cn/kaipiao-app/user/getUserTitle'
+            // ).then(res => {
             //     console.log('res: ', res);
             // });
+
+            const Http = new MyHttp(
+                {
+                    baseURL: 'https://proxy.yipiaoyun.cn/'
+                },
+                {
+                    request: [
+                        config => {
+                            return {
+                                ...config,
+                                headers: {
+                                    ...config.headers,
+                                    Authorization: 'xxxxx'
+                                }
+                            };
+                        }
+                    ],
+                    response: [
+                        config => {
+                            return config.data;
+                        }
+                    ]
+                }
+            );
+
+            Http.getFile('./pyt-logo.png').then(res => {
+                const f = new FileReader();
+                f.onload = r => {
+                    const img = new Image();
+                    img.src = r.target.result;
+                    document.body.appendChild(img);
+                };
+                f.readAsDataURL(res);
+            });
+
+            Http.post('kaipiao-app/user/getUserTitle', {
+                pageIndex: 1,
+                pageSize: 10
+            }).then(res => {
+                console.log('res: ', res);
+            });
         </script>
     </body>
 </html>
