@@ -11,6 +11,12 @@
     "license": "ISC",
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
+    "files": [
+        "lib",
+        "package.json",
+        "yarn.lock",
+        "tsconfig.json"
+    ],
     "scripts": {
         "build": "rimraf lib/* & cross-env NODE_ENV=production rollup --config rollup.config.prod.js & npm run build:dts",
         "build:dts": "rollup --config rollup.config.dts.js",
